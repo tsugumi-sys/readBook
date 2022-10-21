@@ -4,3 +4,5 @@
   - [Google Software Engineering](books/google-software-engineering.md)
 - [Videos](videos.md)
   - [How greate leaders inspire action?](videos/how-greate-leaders-inspire-action.md)
+- [Dev-tips](dev-tips.md)
+  - [Git Commuincations](dev-tips/git-communications.md)
