@@ -7,3 +7,5 @@
   - [How greate leaders inspire action?](videos/how-greate-leaders-inspire-action.md)
 - [Dev-tips](dev-tips.md)
   - [Git Commuincations](dev-tips/git-communications.md)
+- Health
+  - [training](health/training.md)
