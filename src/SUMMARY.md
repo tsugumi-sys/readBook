@@ -7,5 +7,6 @@
   - [How greate leaders inspire action?](videos/how-greate-leaders-inspire-action.md)
 - [Dev-tips](dev-tips.md)
   - [Git Commuincations](dev-tips/git-communications.md)
+  - [Mercari Engeneer Ladders](dev-tips/mercari-ladders.md)
 - [Health](health.md)
   - [training](health/training.md)
