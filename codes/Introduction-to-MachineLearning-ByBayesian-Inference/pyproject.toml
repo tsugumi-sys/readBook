@@ -5,10 +5,11 @@ description = ""
 authors = ["tsugumi-sys <tidemark0105@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "<3.12,>=3.8"
 numpy = "^1.23.5"
 matplotlib = "^3.6.2"
 seaborn = "^0.12.2"
+scipy = "^1.10.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.10.0"
