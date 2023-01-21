@@ -24,10 +24,6 @@ class LinearRegression2D:
         return (mean, std)
 
     def fit(self, x: np.ndarray, y: np.ndarray) -> None:
-        """
-        Args:
-            inputs (List[Tuple]): Lists of (x, y)
-        """
         # Calculate posterior weights' mean and vc matrix.
         prior_w_vc_matrix = self.w_vc_matrix.copy()
         self.w_vc_matrix = self.posterior_vc_matrix(x, prior_w_vc_matrix)
