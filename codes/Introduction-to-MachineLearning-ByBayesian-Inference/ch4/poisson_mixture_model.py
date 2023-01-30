@@ -1,28 +1,17 @@
-from typing import Tuple, List, Optional
-from enum import Enum
+import sys
+from typing import Optional, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import seaborn as sns
 from scipy.special import digamma
 from scipy.stats import nbinom
-import seaborn as sns
+
+sys.path.append("..")
+from utils.common import ApproximateMethod  # noqa
 
 rng = np.random.default_rng()
-
-
-class ApproximateMethod(str, Enum):
-    gibbs = "gibbs"
-    variational = "variational"
-    collapsed_gibbs = "collapsed_gibbs"
-
-    @staticmethod
-    def members() -> List[str]:
-        return [v.value for v in ApproximateMethod.__members__.values()]
-
-    @staticmethod
-    def valid(name: str) -> bool:
-        return name in ApproximateMethod.members()
 
 
 class PoissonMixtureModel:
