@@ -1,11 +1,12 @@
 import sys
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy import stats as scistats
 import pandas as pd
 import seaborn as sns
+from scipy import stats as scistats
+from scipy import special as scispecial
 
 sys.path.append("..")
 from utils.common import ApproximateMethod  # noqa: E402
@@ -94,13 +95,20 @@ class GaussianMixtureModel:
 
         elbo_scores = []
         for step in range(max_iter):
+            print("=" * 40, f"Fitting step{step}", "=" * 40)
+            print(f"Means: {self.means}")
             if approximate_method == ApproximateMethod.gibbs:
                 self.gibbs(x)
+            elif approximate_method == ApproximateMethod.variational:
+                self.variational(x)
+            else:
+                if step == 0:
+                    selected_clusters = self.initialzie_parameter_dist(x)
+                selected_clusters = self.collapsed_gibbs(x, selected_clusters)
         return elbo_scores
 
     def gibbs(self, x) -> None:
-        # Sampling s
-        print(self.means)
+        # Sampling S
         data_size = x.shape[0]
         wishart = self.wisharts()
         mixing_ratios = self.mixsing_ratios()
@@ -146,6 +154,127 @@ class GaussianMixtureModel:
         self.wishart_W = wishart_W
         self.freedom_deg = count_selected_clusters + self.init_freedom_deg
         self.dirichlet_alpha = count_selected_clusters + self.init_dirichlet_alpha
+
+    def variational(self, x: np.ndarray) -> None:
+        # Calculating etas
+        data_size = x.shape[0]
+        wishart = self.wisharts()
+        etas = np.zeros((data_size, self.num_clusters), dtype=np.longdouble)
+        for k in range(self.num_clusters):
+            lambda_k = wishart[k]
+            mean_k = self.means[k]
+            freedom_deg_k = self.freedom_deg[k]
+            beta_k = self.beta[k]
+            for i in range(data_size):
+                eta = -0.5 * x[i].T @ (freedom_deg_k * lambda_k) @ x[i]
+                eta += x[i] @ (freedom_deg_k * lambda_k @ mean_k)
+                eta += -0.5 * (
+                    freedom_deg_k * mean_k.T @ lambda_k @ mean_k
+                    + self.data_dim / beta_k
+                )
+                eta += 0.5 * (
+                    np.array(
+                        [
+                            scispecial.digamma((freedom_deg_k + 1 - d) * 0.5)
+                            for d in range(1, self.data_dim + 1)
+                        ]
+                    ).sum()
+                    + self.data_dim * np.log(2)
+                    + np.log(np.linalg.det(lambda_k))
+                )
+                eta += scispecial.digamma(self.dirichlet_alpha[k]) - scispecial.digamma(
+                    np.sum(self.dirichlet_alpha)
+                )
+                etas[i, k] = np.exp(eta)
+        etas /= np.sum(etas, axis=1)[:, None]
+        # Update parameters
+        self.beta = np.sum(etas, axis=0) + self.init_beta
+        self.freedom_deg = np.sum(etas, axis=0).astype(float) + self.freedom_deg
+        means = np.zeros((self.num_clusters, self.data_dim))
+        wishart_W = np.zeros((self.num_clusters, self.data_dim, self.data_dim))
+        for k in range(self.num_clusters):
+            etas_k = etas[:, k]
+            means_k = (etas_k @ x + self.init_beta * self.init_means) / self.beta[k]
+            means[k] = means_k
+            wishart_W[k] = np.linalg.inv(
+                np.sum(etas_k * np.square(np.linalg.norm(x, axis=1)), axis=0)
+                + self.init_beta * np.dot(self.init_means, self.init_means)
+                - self.beta[k] * np.dot(means_k, means_k)
+                + np.linalg.inv(self.init_wishart_W)
+            )
+        self.means = means
+        self.wishart_W = wishart_W
+
+    def collapsed_gibbs(
+        self, x: np.ndarray, selected_clusters: np.ndarray
+    ) -> np.ndarray:
+        # Sample S
+        data_size = x.shape[0]
+        sampled_clusters = np.zeros((data_size, self.num_clusters))
+        for i in range(data_size):
+            print("clappsed gibbs x:", i)
+            # Subtract statistics of x_i
+            self.beta -= selected_clusters[i]
+            self.dirichlet_alpha -= selected_clusters[i]
+            for k in range(self.num_clusters):
+                self.means[k] -= (selected_clusters[i, k] * x[i]) / self.beta[k]
+                b = (
+                    -1
+                    * (selected_clusters[i, k] * (x[i] - self.init_means))
+                    / self.beta[k]
+                )
+                c = x[i] - self.init_means
+                self.wishart_W[k] = np.linalg.inv(
+                    np.linalg.inv(self.wishart_W[k]) + b @ c.T
+                )
+            self.freedom_deg -= selected_clusters[i]
+            # Sample s of x_i
+            sampling_prob = np.zeros(self.num_clusters, dtype=np.longdouble)
+            for k in range(self.num_clusters):
+                sampling_prob[k] = scistats.multivariate_t.pdf(
+                    x[i],
+                    self.means[k],
+                    (
+                        ((1 - self.data_dim + self.freedom_deg[k]) * self.beta[k])
+                        / (1 + self.beta[k])
+                    )
+                    * self.wishart_W[k],
+                    1 - self.data_dim + self.freedom_deg[k],
+                ) * (self.dirichlet_alpha[k] / np.sum(self.dirichlet_alpha))
+            sampling_prob /= np.sum(sampling_prob)
+            sampled_s = rng.multinomial(
+                1, pvals=sampling_prob.astype(float), size=1
+            ).reshape(self.num_clusters)
+            sampled_clusters[i] = sampled_s
+            # TODO: Update parameters!!
+
+    def initialzie_parameter_dist(self, x) -> np.ndarray:
+        selected_clusters = rng.multinomial(1, self.mixsing_ratios(), x.shape[0])
+        self.beta = np.sum(selected_clusters, axis=0) + self.init_beta
+        self.freedom_deg = np.sum(selected_clusters, axis=0) + self.init_freedom_deg
+        means = np.zeros((self.num_clusters, self.data_dim))
+        wishart_W = np.zeros((self.num_clusters, self.data_dim, self.data_dim))
+        for k in range(self.num_clusters):
+            selected_cluster_k = selected_clusters[:, k]
+            means_k = (
+                np.sum(selected_cluster_k[:, None] * x, axis=0)
+                + self.init_beta * self.init_means
+            ) / self.beta[k]
+            means[k] = means_k
+            wishart_W[k] = np.linalg.inv(
+                (
+                    np.sum(
+                        selected_cluster_k * np.square(np.linalg.norm(x, axis=1)),
+                        axis=0,
+                    )
+                    + self.init_beta * np.dot(self.init_means, self.init_means)
+                    - self.beta[k] * np.dot(means_k, means_k)
+                    + np.linalg.inv(self.init_wishart_W)
+                )
+            )
+        self.means = means
+        self.wishart_W = wishart_W
+        return selected_clusters
 
     def mixsing_ratios(self) -> np.ndarray:
         return rng.dirichlet(self.dirichlet_alpha, 1)
@@ -231,7 +360,7 @@ def visualize_gmm_data(data: Dict):
 
 
 if __name__ == "__main__":
-    n_samples = 10
+    n_samples = 50
     data_dims = 2
     n_clusters = 3
     mixing_raitos = np.array([0.3, 0.3, 0.4])
@@ -261,5 +390,9 @@ if __name__ == "__main__":
     )
     # visualize_gmm_data(data)
     model = GaussianMixtureModel(num_clusters=n_clusters, data_dim=data_dims)
-    model.fit(np.concatenate([a for a in data.values()], axis=0), max_iter=10)
+    model.fit(
+        np.concatenate([a for a in data.values()], axis=0),
+        max_iter=1,
+        approximate_method="collapsed_gibbs",
+    )
     print("label means:", means)

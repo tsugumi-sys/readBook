@@ -1,5 +1,5 @@
 import sys
-from typing import Optional, Tuple, List
+from typing import List, Optional, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -166,7 +166,7 @@ class PoissonMixtureModel:
             self.gamma_a -= selected_clusters[idx] * x_i
             self.gamma_b -= selected_clusters[idx]
             self.dirichlet_alpha -= selected_clusters[idx]
-            # Sample s of x
+            # Sample s of x_i
             sampling_prob = (
                 nbinom.pmf(x_i, self.gamma_a, 1 - (1 / (1 + self.gamma_b))) + 1e-7
             ) * (self.dirichlet_alpha / np.sum(self.dirichlet_alpha))
