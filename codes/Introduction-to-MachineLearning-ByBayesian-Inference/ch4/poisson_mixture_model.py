@@ -1,5 +1,5 @@
 import sys
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -64,7 +64,7 @@ class PoissonMixtureModel:
         x: np.ndarray,
         max_iter: int = 100,
         approximate_method: str = "gibbs",
-    ) -> list:
+    ) -> List:
         if not ApproximateMethod.valid(approximate_method):
             raise ValueError(
                 f"Invalid `approximate_method` {approximate_method}, "
