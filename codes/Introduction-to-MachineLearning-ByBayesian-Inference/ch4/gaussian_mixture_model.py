@@ -80,7 +80,7 @@ class GaussianMixtureModel:
         self.wishart_W = init_wishart_W
 
         if init_dirichlet_alpha is None:
-            init_dirichlet_alpha = np.ones(num_clusters)
+            init_dirichlet_alpha = np.ones(num_clusters) * 100
         self.init_dirichlet_alpha = init_dirichlet_alpha
         self.dirichlet_alpha = init_dirichlet_alpha
 
@@ -104,6 +104,7 @@ class GaussianMixtureModel:
             else:
                 if step == 0:
                     selected_clusters = self.initialzie_parameter_dist(x)
+
                 selected_clusters = self.collapsed_gibbs(x, selected_clusters)
         return elbo_scores
 
@@ -212,12 +213,15 @@ class GaussianMixtureModel:
         data_size = x.shape[0]
         sampled_clusters = np.zeros((data_size, self.num_clusters))
         for i in range(data_size):
-            print("clappsed gibbs x:", i)
             # Subtract statistics of x_i
+            before_beta = self.beta.copy()
             self.beta -= selected_clusters[i]
             self.dirichlet_alpha -= selected_clusters[i]
+            self.freedom_deg -= selected_clusters[i]
             for k in range(self.num_clusters):
-                self.means[k] -= (selected_clusters[i, k] * x[i]) / self.beta[k]
+                self.means[k] = (
+                    before_beta[k] * self.means[k] - selected_clusters[i, k] * x[i]
+                ) / self.beta[k]
                 b = (
                     -1
                     * (selected_clusters[i, k] * (x[i] - self.init_means))
@@ -227,7 +231,6 @@ class GaussianMixtureModel:
                 self.wishart_W[k] = np.linalg.inv(
                     np.linalg.inv(self.wishart_W[k]) + b @ c.T
                 )
-            self.freedom_deg -= selected_clusters[i]
             # Sample s of x_i
             sampling_prob = np.zeros(self.num_clusters, dtype=np.longdouble)
             for k in range(self.num_clusters):
@@ -246,7 +249,21 @@ class GaussianMixtureModel:
                 1, pvals=sampling_prob.astype(float), size=1
             ).reshape(self.num_clusters)
             sampled_clusters[i] = sampled_s
-            # TODO: Update parameters!!
+            # Add statistics of sampled s
+            before_beta = self.beta.copy()
+            self.beta += sampled_s
+            self.dirichlet_alpha += sampled_s
+            self.freedom_deg += sampled_s
+            for k in range(self.num_clusters):
+                self.means[k] = (
+                    before_beta[k] * self.means[k] + sampled_s[k] * x[i]
+                ) / self.beta[k]
+                b = (sampled_s[k] * (x[i] - self.init_means)) / self.beta[k]
+                c = x[i] - self.init_means
+                self.wishart_W[k] = np.linalg.inv(
+                    np.linalg.inv(self.wishart_W[k]) + b @ c.T
+                )
+        return sampled_clusters
 
     def initialzie_parameter_dist(self, x) -> np.ndarray:
         selected_clusters = rng.multinomial(1, self.mixsing_ratios(), x.shape[0])
@@ -392,7 +409,7 @@ if __name__ == "__main__":
     model = GaussianMixtureModel(num_clusters=n_clusters, data_dim=data_dims)
     model.fit(
         np.concatenate([a for a in data.values()], axis=0),
-        max_iter=1,
+        max_iter=10,
         approximate_method="collapsed_gibbs",
     )
     print("label means:", means)
