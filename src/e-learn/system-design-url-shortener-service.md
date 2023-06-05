@@ -18,6 +18,17 @@ source: https://medium.com/@sandeep4.verma/system-design-scalable-url-shortener-
 ```mermaid
 flowchart TD
     db --> apiServer
+    batchServer --> db
+    cacheServer --> apiServer
 ```
 
 ### 細部
+
+#### Scaling
+
+- ユーザー数・CPU使用割合に応じたAPIサーバーのスケーリング。
+- データベースの量はそこまでいらない。ユーザー当たり、頻繁に短いURLを作成するケースは少ないと想定できるため。
+
+#### Cacheing
+
+- 直近アクセスがあったURLはキャッシュしておく。
