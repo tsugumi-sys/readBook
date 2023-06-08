@@ -98,7 +98,7 @@ flowchart LR
 
 ## Algorithms REST Endpoints
 
-```bash
+```text
 create(long_url, api_key, custom_url)
 
 POST
@@ -106,7 +106,7 @@ Request Body: `{url=long_url, custom_url (optional)}`
 Return OK (200) with the generated `short_url` in data
 ```
 
-```bash
+```text
 get(short_url)
 Return a http redirect response (302)
 ```
@@ -119,7 +119,7 @@ A 302 redirect means that the moves is only temporaly. <- こうすると、ク�
 ## Database Schema
 
 **User table**
-```bash
+```text
 user_id: unique
 name:
 email:
@@ -128,7 +128,7 @@ creation_date
 
 **URL table**
 
-```bash
+```text
 short_url:
 original_url:
 user_id:
