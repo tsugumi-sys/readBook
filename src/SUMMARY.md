@@ -6,6 +6,8 @@
 - [E-Learnings](e-learn.md)
   - [System Design Interview Introduction](e-learn/system-design-interview.md)
   - [System Design Interview Basics](e-learn/system-design-basics.md)
+    - [IP DNS and TCP/UDP](e-learn/system-design-basics-ip-osi-model.md)
+    - [Load Balancing and Clustering](e-learn/system-design-basics-loadbalancer-clustering.md)
   - [System Design of URL Shourtener Service](e-learn/system-design-url-shortener-service.md)
 - [Videos](videos.md)
   - [How greate leaders inspire action?](videos/how-greate-leaders-inspire-action.md)
