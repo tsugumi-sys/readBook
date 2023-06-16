@@ -4,5 +4,5 @@ From [karanpratapsignh/system-design](https://github.com/karanpratapsingh/system
 
 ## Contents
 
-- [IP DNS and TCP/UDP](/src/e-learn/system-design-basics-ip-osi-model.md)
-- [Load Balancing and Clustering](/src/e-learn/system-design-basics-loadbalancer-clustering.md)
+- [IP DNS and TCP/UDP](e-learn/system-design-basics-ip-osi-model.md)
+- [Load Balancing and Clustering](e-learn/system-design-basics-loadbalancer-clustering.md)
