@@ -48,7 +48,7 @@ source: https://medium.com/@sandeep4.verma/system-design-scalable-url-shortener-
 - 8000 read request/seconds * 86400 seconds = 700M read request per day)
 - キャッシュするデータ量は 700M * 0.2 * 500 bytes ~ 70GB
 
-```
+```text
 Shortened URLs generated: 40/s
 Shortened URLs generated in 100 years: 120 billion
 Total URL requests/redirections: 8000/s

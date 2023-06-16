@@ -3,7 +3,6 @@
 From [karanpratapsignh/system-design](https://github.com/karanpratapsingh/system-design)
 
 
-
 ## なぜLoad Balancingが必要なのか？
 
 - 膨大なトラフィックを、複数台のサーバーを使って効率的に処理するため。
@@ -82,3 +81,6 @@ IPアドレスを返してそこへアクセスさせる方法。DNSは転送先
 - Azure Load Balancing
 - GCP Load Balancing
 - Nginx
+
+## Clustering
+
