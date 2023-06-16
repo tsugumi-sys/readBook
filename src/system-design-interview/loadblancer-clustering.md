@@ -82,5 +82,59 @@ IPアドレスを返してそこへアクセスさせる方法。DNSは転送先
 - GCP Load Balancing
 - Nginx
 
-## Clustering
+## なぜClusteringが必要なのか？
 
+複数のコンピュータリソースにまたがって処理を分散的に行うことで、より効率的に、スピーディに処理を行うため。
+
+一台のノードがリーダー的な役割を果たし、他のノードのエントリーポイントとして動作していることが一般的。
+リーダーノードが処理を他ノードに分散して行わせたり、処理結果を集約してユーザーに返す処理を行う。
+
+### クラスターの種類
+
+- **Highly available or fail-over** (クラスターノードに障害が発生した場合に他のノードがサービスを提供する。Kubernetes的な？)
+- **ロードバランシング**
+- **ハイパフォーマンスコンピューティング**
+
+### High Availavilityのクラスター設定例
+
+#### active-active
+```mermaid
+flowchart LR
+  Client --> LoadBalancer
+  subgraph cluster
+    Node1
+    Node2
+  end
+  LoadBalancer --> Node1
+  LoadBalancer --> Node2
+```
+
+#### active-passive
+```mermaid
+flowchart LR
+  Client --> LoadBalancer
+  subgraph cluster LR
+    Node1_Primary
+    Node2_FailOver
+  end
+  LoadBalancer --> Node1_Primary
+  Node1_Primary -.-> Node2_FailOver
+```
+
+### クラスタリングを用いたコンピューティングのメリットとは？
+
+- 高可用性
+- スケーラビリティ
+- パフォーマンス
+- コスト効率
+
+### クラスタリングを用いる場合のデメリットは？
+
+- 複雑性のメンテナンスの難しさ。
+
+
+### サービス例
+
+- Containers (e.g. Kubernetes, Amazon ECS)
+- Databases (e.g. Cassandra, MongoDB)
+- Cashe (e.g. Redis)
