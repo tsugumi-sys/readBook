@@ -15,9 +15,9 @@ jobs:
       with:
         toolchain: stable
     - name: install cargo
-        run: |
-          cargo install mdbook-mermaid
-    name: install mdbook mermaid
+      run: |
+        cargo install mdbook-mermaid
+    - name: install mdbook mermaid
       run: |
         mdbook-mermaid install
     - name: Install mdbook
