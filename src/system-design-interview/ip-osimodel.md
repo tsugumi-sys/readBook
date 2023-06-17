@@ -39,7 +39,7 @@ OSIモデルとはOpen System Interactionの略称で、ネットワークを介
 ### 7つのレイヤーについて
 
 ```mermaid
-%%{init:{'theme':'forest'}}%%
+%%{init:{'theme':'neutral'}}%%
 
 flowchart TB
     ApplicationLayer --> PresentationLayer
