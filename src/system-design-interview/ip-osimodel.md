@@ -1,6 +1,7 @@
 # System Design basics
 
-From [karanpratapsignh/system-design](https://github.com/karanpratapsingh/system-design)
+From
+[karanpratapsignh/system-design](https://github.com/karanpratapsingh/system-design)
 
 ## IPとは？
 
@@ -9,11 +10,9 @@ IPアドレスはインターネットやローカルネットワーク上でデ
 
 ### IPv4とIPv6の違い
 
-IPv4: `e.g. 102.22.192.181`
-IPv6: `e.g. 2001:0db8:85a3:0000:0000:8a2e:0370:7334`
+IPv4: `e.g. 102.22.192.181` IPv6: `e.g. 2001:0db8:85a3:0000:0000:8a2e:0370:7334`
 
 IPv4では数が足りなくなってきたため、IPv6が1999年に提案された。
-
 
 ### Public/Private/Static/Dynamic/ IP Addressの違い
 
@@ -25,12 +24,10 @@ Static IP Addressは不変のIPアドレスで手動で作成されたIPアド�
 
 Dynamic IP Addressは時間によって変化するIPアドレス。インターネット上で最も一般的なIPアドレス。価格も最も安い。
 
-
 ## OSI Modelとは？
 
 OSIモデルとはOpen System Interactionの略称で、ネットワークを介して異なるシステム間で相互通信を行うための
-概念・モデルのこと。一定の処理単位ごとに7つのレイヤーに分割して、それぞれのレイヤー同士の相互通信を行うモデル
-である。
+概念・モデルのこと。一定の処理単位ごとに7つのレイヤーに分割して、それぞれのレイヤー同士の相互通信を行うモデル である。
 
 ### なぜOSIモデルが重要なのか？
 
@@ -42,6 +39,8 @@ OSIモデルとはOpen System Interactionの略称で、ネットワークを介
 ### 7つのレイヤーについて
 
 ```mermaid
+%%{init:{'theme':'natural'}}%%
+
 flowchart TB
     ApplicationLayer --> PresentationLayer
     PresentationLayer --> SessionLayer
@@ -53,8 +52,7 @@ flowchart TB
 
 #### Application Layerの役割
 
-ユーザーインターフェース。
-ソフトウェアそのものではなく、HTTPやSMTPなどといった通信手順やデータ形式を決める役割を担う。
+ユーザーインターフェース。 ソフトウェアそのものではなく、HTTPやSMTPなどといった通信手順やデータ形式を決める役割を担う。
 
 #### Presentation Layerの役割
 
@@ -89,7 +87,6 @@ Application Layerからのデータを適切なフォーマット（UTF-8）な�
 
 したがって、通信速度が異なります。ファイルの送信などデータの正確性が求められるケースでは、TCPが好まれる。リアルタイム性が求められる場合はUDPを使うことが多い。
 一方で正確性はUDPが劣る。通信速度とデータの正確性のトレードオフ。
-
 
 ## DNSとは？
 
