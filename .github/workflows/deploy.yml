@@ -14,7 +14,14 @@ jobs:
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
+    - uses: actions/cache@v3
+      id: cache-cargo
+      with:
+        path: |
+          /home/runner/.cargo/bin/
+        key: ${{ runner.os }}-${{ hashFiles('Cargo.toml') }}
     - name: install cargo
+      if: steps.cache-cargo.outputs.cache-hit != 'true'
       run: |
         cargo install mdbook-mermaid
     - name: install mdbook mermaid
