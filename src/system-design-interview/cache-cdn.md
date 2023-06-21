@@ -40,6 +40,8 @@ Cache Invalidationはコンピュータシステムがキャッシュデータ�
 #### Write-through Cache
 
 ```mermaid
+%%{init:{'theme':'neutral'}}%%
+
 flowchart LR
   Client --> |Read| Cache
   Cache --> Client
@@ -56,6 +58,8 @@ flowchart LR
 #### Write-around Cache
 
 ```mermaid
+%%{init:{'theme':'neutral'}}%%
+
 flowchart LR
   Client --> |Read| Cache
   Cache --> Client
@@ -72,6 +76,8 @@ flowchart LR
 #### Write-back Cache
 
 ```mermaid
+%%{init:{'theme':'neutral'}}%%
+
 flowchart LR
    Client --> |Read| Cache
   Cache --> Client
@@ -103,6 +109,8 @@ flowchart LR
 アプリケーションクラスターのノードに対してCacheを割り当てる。
 
 ```mermaid
+%%{init:{'theme':'neutral'}}%%
+
 flowchart LR
   subgraph ApplicationCluster
     direction TB
@@ -165,6 +173,8 @@ CDNとは、ネットワークとを介したコンテンツのを素早く行�
 ### CDNの仕組みとは？
 
 ```mermaid
+%%{init:{'theme':'neutral'}}%%
+
 flowchart LR
   OriginServer -.-> EdgeServer1
   OriginServer -.-> EdgeServer2

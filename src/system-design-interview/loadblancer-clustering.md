@@ -99,6 +99,8 @@ IPアドレスを返してそこへアクセスさせる方法。DNSは転送先
 
 #### active-active
 ```mermaid
+%%{init:{'theme':'neutral'}}%%
+
 flowchart LR
   Client --> LoadBalancer
   subgraph cluster
@@ -110,7 +112,10 @@ flowchart LR
 ```
 
 #### active-passive
+
 ```mermaid
+%%{init:{'theme':'neutral'}}%%
+
 flowchart LR
   Client --> LoadBalancer
   subgraph cluster LR

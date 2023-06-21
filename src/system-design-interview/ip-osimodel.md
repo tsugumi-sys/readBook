@@ -95,6 +95,8 @@ IPアドレス（記号）に対して、一定の規則に従う文字列を割
 ### どうやって文字列からIPアドレスを見つけるの？
 
 ```mermaid
+%%{init:{'theme':'neutral'}}%%
+
 flowchart TB
     Client <--> DNSResolver
     DNSResolver <--> 1-RootServer
