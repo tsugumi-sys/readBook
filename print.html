@@ -1,0 +1,999 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>my read books</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="books.html"><strong aria-hidden="true">1.</strong> Books</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="books/google-software-engineering.html"><strong aria-hidden="true">1.1.</strong> Google Software Engineering</a></li><li class="chapter-item expanded "><a href="books/clean-architecture.html"><strong aria-hidden="true">1.2.</strong> Clean Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="system-design-interview.html"><strong aria-hidden="true">2.</strong> System Design Interview</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="system-design-interview/introduction.html"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="system-design-interview/ip-osimodel.html"><strong aria-hidden="true">2.2.</strong> IP DNS and TCP/UDP</a></li><li class="chapter-item expanded "><a href="system-design-interview/loadblancer-clustering.html"><strong aria-hidden="true">2.3.</strong> Load Balancing and Clustering</a></li><li class="chapter-item expanded "><a href="system-design-interview/cache-cdn.html"><strong aria-hidden="true">2.4.</strong> Cache and CDN</a></li><li class="chapter-item expanded "><a href="system-design-interview/databases.html"><strong aria-hidden="true">2.5.</strong> Databases</a></li><li class="chapter-item expanded "><a href="system-design-interview/url-shortener-service.html"><strong aria-hidden="true">2.6.</strong> System Design of URL Shourtener Service</a></li></ol></li><li class="chapter-item expanded "><a href="videos.html"><strong aria-hidden="true">3.</strong> Videos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="videos/how-greate-leaders-inspire-action.html"><strong aria-hidden="true">3.1.</strong> How greate leaders inspire action?</a></li></ol></li><li class="chapter-item expanded "><a href="dev-tips.html"><strong aria-hidden="true">4.</strong> Dev-tips</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="dev-tips/git-communications.html"><strong aria-hidden="true">4.1.</strong> Git Commuincations</a></li><li class="chapter-item expanded "><a href="dev-tips/mercari-ladders.html"><strong aria-hidden="true">4.2.</strong> Mercari Engeneer Ladders</a></li></ol></li><li class="chapter-item expanded "><a href="health.html"><strong aria-hidden="true">5.</strong> Health</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="health/training.html"><strong aria-hidden="true">5.1.</strong> training</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my read books</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="the-output-of-my-reading-books"><a class="header" href="#the-output-of-my-reading-books">The output of My Reading Books</a></h1>
+<p>２，３回以上読み返したい本の内容や忘れては行けないと思った内容をまとめる。アウトプット用、じぶんの頭の整理用。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="google-software-engineering"><a class="header" href="#google-software-engineering">Google Software Engineering</a></h1>
+<p><a href="https://www.oreilly.co.jp/books/9784873119656/">URL</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="clean-architecture"><a class="header" href="#clean-architecture">Clean Architecture</a></h1>
+<p><a href="https://www.amazon.co.jp/Clean-Architecture-%E9%81%94%E4%BA%BA%E3%81%AB%E5%AD%A6%E3%81%B6%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%AE%E6%A7%8B%E9%80%A0%E3%81%A8%E8%A8%AD%E8%A8%88-Robert-C-Martin/dp/4048930656">Book URL</a></p>
+<p><a href="https://nrslib.com/clean-architecture/">実践クリーンアーキテクチャ by nrs</a></p>
+<h2 id="概要"><a class="header" href="#概要">概要</a></h2>
+<h2 id="感想"><a class="header" href="#感想">感想</a></h2>
+<p>クリーンアーキテクチャの目的は、「ビジネスロジックが UI、DB、外部 API、フレームワークに依存しないようにすることで柔軟なアプリケーションを構築すること 」である。
+技術負債が生じにくい設計ともいえる。本書では MVC フレームワークに近いアプリケーションを想定していると考えられる（同心円の図）。現在のバックエンドとフロントエンドを分ける実装に落とし込むためには工夫が必要そうだ。
+Interface を用いて依存関係を適切に管理することで、これを実現している。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="system-design-basics"><a class="header" href="#system-design-basics">System Design basics</a></h1>
+<p>From <a href="https://github.com/karanpratapsingh/system-design">karanpratapsignh/system-design</a></p>
+<h2 id="basics"><a class="header" href="#basics">Basics</a></h2>
+<ul>
+<li><a href="system-design-interview/introduction.html">Introduction</a></li>
+<li><a href="system-design-interview/ip-osimodel.html">IP DNS and TCP/UDP</a></li>
+<li><a href="system-design-interview/loadblancer-clustering.html">Load Balancing and Clustering</a></li>
+<li><a href="system-design-interview/cache-cdn.html">Cache and CDN</a></li>
+</ul>
+<h2 id="design-actual-services"><a class="header" href="#design-actual-services">Design Actual Services</a></h2>
+<ul>
+<li><a href="system-design-interview/url-shortener-service.html">System Design of URL Shourtener Service</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="system-design-interview-basics"><a class="header" href="#system-design-interview-basics">System Design Interview Basics</a></h1>
+<h2 id="はじめに"><a class="header" href="#はじめに">はじめに</a></h2>
+<p>Googleがシステムデザインインタビューに関する動画で基礎中の基礎を書いてくれていたので、まとめる。</p>
+<p>source: https://www.youtube.com/watch?v=Gg318hR5JY0&amp;t=18s</p>
+<h3 id="cmmunication"><a class="header" href="#cmmunication">Cmmunication</a></h3>
+<p>大きく分けて、以下の２つを見ている。</p>
+<ul>
+<li>問題解決能力</li>
+<li>他者とのコミュニケーション能力</li>
+</ul>
+<h4 id="問題解決能力"><a class="header" href="#問題解決能力">問題解決能力</a></h4>
+<p>技術力関係なしに、その人の問題解決能力がどれくらいあるかをまず測りたい。
+したがって、自分の考えたことを相手にも積極的に伝えて透明化することを意識する。</p>
+<p>加えて、技術的な知識・経験等を組み合わせてどれくらい質の高いアウトプットが出せるかをみたい。</p>
+<h4 id="コミュニーケーション能力"><a class="header" href="#コミュニーケーション能力">コミュニーケーション能力</a></h4>
+<p>議論をリードする力、問題を構造化して一つづつ確実に処理していく整理力、詰まったところなどを整理して他者と相談しがなら進められる力など。</p>
+<h3 id="designing-to-scale"><a class="header" href="#designing-to-scale">Designing to Scale</a></h3>
+<p>今日において、どれくらいのアクセス・データ量を捌けるかどうかは必須の要件となっている。</p>
+<p>System Propertiesが代表的にな要件となっている。</p>
+<h4 id="system-properties"><a class="header" href="#system-properties">System Properties</a></h4>
+<ul>
+<li>Latency</li>
+<li>Throughput</li>
+<li>Storage</li>
+</ul>
+<p>https://www.youtube.com/watch?v=-W9F__D3oY4&amp;t=2s</p>
+<h3 id="concrete-and-quantitative-solutions"><a class="header" href="#concrete-and-quantitative-solutions">Concrete and Quantitative Solutions</a></h3>
+<p>常に物理法則や現実的なパラメータ（距離など）も合わせて考える必要がある。</p>
+<h4 id="costs-of-operations"><a class="header" href="#costs-of-operations">Costs of Operations</a></h4>
+<ul>
+<li>Read from disk</li>
+<li>Read from memory</li>
+<li>Local Area Network (LAN) round-trip</li>
+<li>Cross-Continental Network</li>
+</ul>
+<p>実際にはホワイトボードにて、概要図（アーキテクチャー図）を使うことが多い。
+これらの課題を解決するための代表的なパターンがいくつかあるため、押さえておこう。</p>
+<h4 id="solution-patterns"><a class="header" href="#solution-patterns">Solution Patterns</a></h4>
+<ul>
+<li>Sharding data</li>
+<li>Replication types</li>
+<li>Write-Ahead Logging</li>
+<li>Separating data and metadata storage</li>
+<li>Load distribution</li>
+</ul>
+<h3 id="trade-offs-and-compromises"><a class="header" href="#trade-offs-and-compromises">Trade-offs and Compromises</a></h3>
+<p>実際にシステムデザインを行うときには、いくつかのトレードオフに基づいて妥協しなければならない。
+インタビュー時にこれらのことも議論できるとなお良い。</p>
+<h2 id="実際の流れ一例"><a class="header" href="#実際の流れ一例">実際の流れ一例</a></h2>
+<ol>
+<li>そのシステムが達成すべき事項・解決すべき問題の理解・設計スコープの設定</li>
+<li>high-level architecture の提案</li>
+<li>より細部の設計検討</li>
+<li>ラップアップ</li>
+</ol>
+<p>「そのシステムを設計する上で重要な課題は何か？」という問題の理解に時間をかけずに、稚速にアーキテクチャや採用すべき技術を提案することは百害あって一利なし。</p>
+<p>問題を理解するために、質問を適切に投げかけて仮定・想定を少しづつ積み上げていく。これによって言語化されていなかった要件や仕様を明確にしていく。</p>
+<h3 id="問題理解のための質問具体例"><a class="header" href="#問題理解のための質問具体例">問題理解のための質問具体例</a></h3>
+<ul>
+<li>具体的にどのような機能が必要なのか。</li>
+<li>想定ユーザー数は。</li>
+<li>システムに期待するスケール速度は？</li>
+<li>その企業では今、どんな技術スタックを採用しているか？既存のサービスを流用することで新規の作成範囲を縮小できないか。</li>
+</ul>
+<h3 id="high-level-architectureについて"><a class="header" href="#high-level-architectureについて">high level architectureについて</a></h3>
+<p>システム全体のコンセプトを伝えることを心がある。
+また、この段階で性能や収容性・スケーラビリティについても荒く計算し最低限の実現性を担保しておく。</p>
+<h3 id="ラップアップについて"><a class="header" href="#ラップアップについて">ラップアップについて</a></h3>
+<ul>
+<li>コンポーネントの故障時の可用性について、どのように考えているのか？</li>
+<li>運用する上で監視するべきメトリクスは何か？</li>
+<li>ユーザー数増加に伴うシステムのスケーリング戦略はあるか？</li>
+</ul>
+<h2 id="有用なオンライン学習ソース"><a class="header" href="#有用なオンライン学習ソース">有用なオンライン学習ソース</a></h2>
+<ul>
+<li>https://github.com/checkcheckzz/system-design-interview</li>
+<li>https://github.com/donnemartin/system-design-primer/blob/master/README-ja.md</li>
+<li>https://www.youtube.com/watch?v=-W9F__D3oY4&amp;t=2s</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="system-design-basics-1"><a class="header" href="#system-design-basics-1">System Design basics</a></h1>
+<p>From
+<a href="https://github.com/karanpratapsingh/system-design">karanpratapsignh/system-design</a></p>
+<h2 id="ipとは"><a class="header" href="#ipとは">IPとは？</a></h2>
+<p>インターネットプロトコルの略称。デバイスがネットワーク（ローカルも含む）を介してやり取りするため。
+IPアドレスはインターネットやローカルネットワーク上でデバイス固有の値をもつ。</p>
+<h3 id="ipv4とipv6の違い"><a class="header" href="#ipv4とipv6の違い">IPv4とIPv6の違い</a></h3>
+<p>IPv4: <code>e.g. 102.22.192.181</code> IPv6: <code>e.g. 2001:0db8:85a3:0000:0000:8a2e:0370:7334</code></p>
+<p>IPv4では数が足りなくなってきたため、IPv6が1999年に提案された。</p>
+<h3 id="publicprivatestaticdynamic-ip-addressの違い"><a class="header" href="#publicprivatestaticdynamic-ip-addressの違い">Public/Private/Static/Dynamic/ IP Addressの違い</a></h3>
+<p>Public IP Addressは全てのインターネット上で固有のIPアドレス。プロバイダが提供するものなど。</p>
+<p>Private IP Addressは自分のネットワーク上で固有のIPアドレス。グローバルで固有ではない。</p>
+<p>Static IP Addressは不変のIPアドレスで手動で作成されたIPアドレス。</p>
+<p>Dynamic IP Addressは時間によって変化するIPアドレス。インターネット上で最も一般的なIPアドレス。価格も最も安い。</p>
+<h2 id="osi-modelとは"><a class="header" href="#osi-modelとは">OSI Modelとは？</a></h2>
+<p>OSIモデルとはOpen System Interactionの略称で、ネットワークを介して異なるシステム間で相互通信を行うための
+概念・モデルのこと。一定の処理単位ごとに7つのレイヤーに分割して、それぞれのレイヤー同士の相互通信を行うモデル である。</p>
+<h3 id="なぜosiモデルが重要なのか"><a class="header" href="#なぜosiモデルが重要なのか">なぜOSIモデルが重要なのか？</a></h3>
+<ul>
+<li>トラブルシューティングのしやすさと脅威の迅速な検知。</li>
+<li>共通の通信仕様を定義することで、ネットワーク通信を伴うハードウェアの開発を推進させるため。</li>
+<li>セキュリティファーストな開発を重点とするため。</li>
+<li>複雑な処理をよりシンプルな処理に分割するため。</li>
+</ul>
+<h3 id="7つのレイヤーについて"><a class="header" href="#7つのレイヤーについて">7つのレイヤーについて</a></h3>
+<pre class="mermaid">%%{init:{'theme':'neutral'}}%%
+
+flowchart TB
+    ApplicationLayer --&gt; PresentationLayer
+    PresentationLayer --&gt; SessionLayer
+    SessionLayer --&gt; TransportLayer
+    TransportLayer --&gt; NetworkLayer
+    NetworkLayer --&gt; DataLinkLayer
+    DataLinkLayer --&gt; PhysicalLayer
+</pre>
+<h4 id="application-layerの役割"><a class="header" href="#application-layerの役割">Application Layerの役割</a></h4>
+<p>ユーザーインターフェース。 ソフトウェアそのものではなく、HTTPやSMTPなどといった通信手順やデータ形式を決める役割を担う。</p>
+<h4 id="presentation-layerの役割"><a class="header" href="#presentation-layerの役割">Presentation Layerの役割</a></h4>
+<p>Application Layerからのデータを適切なフォーマット（UTF-8）などに変換する（またはその逆）。またデータの暗号化も行う。</p>
+<h4 id="session-layerの役割"><a class="header" href="#session-layerの役割">Session Layerの役割</a></h4>
+<p>異なるシステム間の通信の確立・維持・終了までの手順を規定している。</p>
+<h4 id="transport-layerの役割"><a class="header" href="#transport-layerの役割">Transport Layerの役割</a></h4>
+<p>異なるシステム間がやり取りする際のエンドポイントとして機能する。
+具体的には、データをセグメントに分割して送ったり、受け取ったセグメントデータを組み立てる役割を担う。</p>
+<h4 id="network-layerの役割"><a class="header" href="#network-layerの役割">Network Layerの役割</a></h4>
+<p>セグメントデータをさらに細かいパケットと呼ばれる単位まで分割する/受け取ったパケットを組み立てる役割を担う。
+また、ベストな転送経路を見つけることも行う。異なるシステムが同じネットワーク上にある場合、この層は必要ない。</p>
+<h4 id="datalink-layerの役割"><a class="header" href="#datalink-layerの役割">DataLink Layerの役割</a></h4>
+<p>パケットをさらに細かいフレームと呼ばれる単位まで分割/組み立てる役割を担う。</p>
+<h4 id="physical-layerの役割"><a class="header" href="#physical-layerの役割">Physical Layerの役割</a></h4>
+<p>ケーブルやスイッチなどデータ転送に関わる物理機器。また、データがビットに変換される層でもある。</p>
+<h2 id="tcpとudpの違い"><a class="header" href="#tcpとudpの違い">TCPとUDPの違い</a></h2>
+<p>通信方法が違います。TCPは相互通信が可能だと判断してから、データのやり取りを行う。さらにやり取りの際にエラーチェックなどが行われる。
+一方でUDPは相互通信が可能かどうかチェックもいらず、データを送ることができる。エラーチェックなども行わない。</p>
+<p>したがって、通信速度が異なります。ファイルの送信などデータの正確性が求められるケースでは、TCPが好まれる。リアルタイム性が求められる場合はUDPを使うことが多い。
+一方で正確性はUDPが劣る。通信速度とデータの正確性のトレードオフ。</p>
+<h2 id="dnsとは"><a class="header" href="#dnsとは">DNSとは？</a></h2>
+<p>IPアドレス（記号）に対して、一定の規則に従う文字列を割り当てるためのシステム。</p>
+<h3 id="どうやって文字列からipアドレスを見つけるの"><a class="header" href="#どうやって文字列からipアドレスを見つけるの">どうやって文字列からIPアドレスを見つけるの？</a></h3>
+<pre class="mermaid">%%{init:{'theme':'neutral'}}%%
+
+flowchart TB
+    Client &lt;--&gt; DNSResolver
+    DNSResolver &lt;--&gt; 1-RootServer
+    DNSResolver &lt;--&gt; 2-TLDNameserver
+    DNSResolver &lt;--&gt; 3-AuthoritativeDNSServer
+</pre>
+<ol>
+<li>クライアントがexample.comとWebブラウザに入力する。インターネットを介して、入力した内容（クエリ）がDNS Resolverに送られる。</li>
+<li>クエリからDNS Root Nameserverを検索する。</li>
+<li>DNS Root Nameserverに対して、クエリを送りTLD Name Serverを検索する。</li>
+<li>TLD Name Serverに対してクエリを送り、Authoritative DNS Serverを検索する。</li>
+<li>Authoritative DNS Serverにクエリに対応するIPアドレスがないか検索する。</li>
+<li>クエリに対応するIPアドレスが見つかるまでAuthoritative DNS Serverを探す操作を繰り返す。</li>
+<li>Authoritatieve DNS ServerからIPアドレスを取得し、Resolverがクライアントに返す。</li>
+</ol>
+<h3 id="dns-root-serverは何をやっているの"><a class="header" href="#dns-root-serverは何をやっているの">DNS Root Serverは何をやっているの？</a></h3>
+<p><code>.com, .net, .org, etc.</code>などのドメイン名からTLDNameServerのIPアドレスのリストを返す。</p>
+<h3 id="tld-name-serverは何をやっているの"><a class="header" href="#tld-name-serverは何をやっているの">TLD Name Serverは何をやっているの？</a></h3>
+<p>TLD Name Serverが所有するDNSサーバーのIPアドレスを返す。</p>
+<h3 id="authoritative-dns-serverは何をやっているの"><a class="header" href="#authoritative-dns-serverは何をやっているの">Authoritative DNS Serverは何をやっているの？</a></h3>
+<p>example.comに対応するIPアドレスを探し、存在する場合は返す。</p>
+<p>DNSリゾルバがすでにDNSレコードをキャッシュしている場合もあり、その場合はキャッシュからIPアドレスを返却することもある。</p>
+<h3 id="ドメインのパーツごとの名前は"><a class="header" href="#ドメインのパーツごとの名前は">ドメインのパーツごとの名前は？</a></h3>
+<p><code>{subdomain}.{primary domain}.{top level domain}</code></p>
+<h3 id="dnsサービス"><a class="header" href="#dnsサービス">DNSサービス</a></h3>
+<ul>
+<li>Route53</li>
+<li>Cloudflare DNS</li>
+<li>Google Cloud DNS</li>
+<li>Azure DNS</li>
+<li>NS1</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="system-design-basics-2"><a class="header" href="#system-design-basics-2">System Design basics</a></h1>
+<p>From <a href="https://github.com/karanpratapsingh/system-design">karanpratapsignh/system-design</a></p>
+<h2 id="なぜload-balancingが必要なのか"><a class="header" href="#なぜload-balancingが必要なのか">なぜLoad Balancingが必要なのか？</a></h2>
+<ul>
+<li>膨大なトラフィックを、複数台のサーバーを使って効率的に処理するため。</li>
+<li>単一障害点をなくし、可用性を向上させるため。</li>
+</ul>
+<h3 id="どうやってトラフィックを分散させているのか"><a class="header" href="#どうやってトラフィックを分散させているのか">どうやってトラフィックを分散させているのか？</a></h3>
+<ul>
+<li>Host-based: ホスト名に基づいて分散させる方法。</li>
+<li>Path-based: URLに基づいて分散させる方法。</li>
+<li>Content-based: リクエストのメッセージ内容を元に分散させる方法。</li>
+</ul>
+<h3 id="ロードバランサーはosiモデルのどの層で行うべきか"><a class="header" href="#ロードバランサーはosiモデルのどの層で行うべきか">ロードバランサーはOSIモデルのどの層で行うべきか？</a></h3>
+<h4 id="network-layer"><a class="header" href="#network-layer">Network Layer</a></h4>
+<p>いわゆるL4ロードバランサーのこと。
+OSIモデルの４層目にあたるネットワーク転送レイヤーにて、ネットワークに関する情報（IPアドレスなど）を用いて、ルーティングを行う。
+この時点では、データの内容を解釈することはできないため、コンテンツベースのルーティングはできない。</p>
+<p>e.g. CLB, NLB (AWS)</p>
+<h4 id="application-layer"><a class="header" href="#application-layer">Application Layer</a></h4>
+<p>いわゆるL7ロードバランサーのこと。
+OSIモデルの7層目に当たるアプリケーションレイヤーにて、コンテンツベース（クッキーなど）のルーティングを行う。
+ロードバランサーを使ったセッションの維持はL7ロードバランサーじゃないとできない。</p>
+<p>e.g. CLB, ALB (AWS)</p>
+<h3 id="ロードバランサーにはどんな種類があるか"><a class="header" href="#ロードバランサーにはどんな種類があるか">ロードバランサーにはどんな種類があるか？</a></h3>
+<h4 id="softwareタイプ"><a class="header" href="#softwareタイプ">Softwareタイプ</a></h4>
+<p>最も一般的なタイプ。NginXとか。</p>
+<h4 id="hardwareタイプ"><a class="header" href="#hardwareタイプ">Hardwareタイプ</a></h4>
+<p>オンプレミスでデバイスを設置して使うタイプ。あまり聞かないけど</p>
+<h4 id="dnsタイプ"><a class="header" href="#dnsタイプ">DNSタイプ</a></h4>
+<p>IPアドレスを返してそこへアクセスさせる方法。DNSは転送先の状態を確認しないため、不便。あまり使われていない。</p>
+<h3 id="routing-algorithms"><a class="header" href="#routing-algorithms">Routing Algorithms</a></h3>
+<ul>
+<li><strong>Round-robin</strong>: ローテーション方式で転送先を決める。</li>
+<li><strong>Weighted Round-robin</strong>: サーバーの性能に応じて重み付けしてローテーションする方式。</li>
+<li><strong>Least Connections</strong>: コネクションが少ないサーバーに優先的に転送する方式。</li>
+<li><strong>Lease Response Time</strong>: レスポンスが早いサーバーに優先的に転送する方式。</li>
+<li><strong>Least Bandwidth</strong>: トラフィックが少ないサーバーに優先的に転送する方式。</li>
+<li><strong>Hashing</strong>: こちらが独自に定義したキーに応じて振り分ける方式(IPアドレスやリクエストURLなど)。</li>
+</ul>
+<h3 id="ロードバランサーの冗長性redundancyは大丈夫そう"><a class="header" href="#ロードバランサーの冗長性redundancyは大丈夫そう">ロードバランサーの冗長性（Redundancy）は大丈夫そう？</a></h3>
+<p>単一のロードバランサーは単一障害点になる。
+クラスターモードでロードバランサーを運用し、本体が死んだら待機しているロードバランサーに切り替えるなどの対応が可能。</p>
+<h3 id="ロードバランサーの要件とは"><a class="header" href="#ロードバランサーの要件とは">ロードバランサーの要件とは？</a></h3>
+<ul>
+<li>トラフィックに応じてサーバーリソースのオートスケールが可能であること。</li>
+<li>セッションを保持できること（同じユーザーのアクセスは同じサーバーに転送する）。</li>
+<li>サーバーのヘルスチェックが可能であること。</li>
+<li>Webソケットのようなパーシステントコネクションが可能であること。</li>
+<li>TLSやSSLのような暗号化処理を行うことができること。</li>
+<li>接続元の認証が可能であること。</li>
+<li>レスポンスを圧縮できること。</li>
+<li>L7ロードバランサーなどは、キャッシュが可能であること。</li>
+<li>ロギングが可能であること。</li>
+<li>リクエストトレースが可能であること。リクエストごとにユニークなIDを振り分けてログをとる。</li>
+<li>リダイレクトが可能であること。</li>
+<li>固定レスポンスができること（エラーメッセージ的な）。</li>
+</ul>
+<h3 id="サービス例"><a class="header" href="#サービス例">サービス例</a></h3>
+<ul>
+<li>Amazon ELB</li>
+<li>Azure Load Balancing</li>
+<li>GCP Load Balancing</li>
+<li>Nginx</li>
+</ul>
+<h2 id="なぜclusteringが必要なのか"><a class="header" href="#なぜclusteringが必要なのか">なぜClusteringが必要なのか？</a></h2>
+<p>複数のコンピュータリソースにまたがって処理を分散的に行うことで、より効率的に、スピーディに処理を行うため。</p>
+<p>一台のノードがリーダー的な役割を果たし、他のノードのエントリーポイントとして動作していることが一般的。
+リーダーノードが処理を他ノードに分散して行わせたり、処理結果を集約してユーザーに返す処理を行う。</p>
+<h3 id="クラスターの種類"><a class="header" href="#クラスターの種類">クラスターの種類</a></h3>
+<ul>
+<li><strong>Highly available or fail-over</strong> (クラスターノードに障害が発生した場合に他のノードがサービスを提供する。Kubernetes的な？)</li>
+<li><strong>ロードバランシング</strong></li>
+<li><strong>ハイパフォーマンスコンピューティング</strong></li>
+</ul>
+<h3 id="high-availavilityのクラスター設定例"><a class="header" href="#high-availavilityのクラスター設定例">High Availavilityのクラスター設定例</a></h3>
+<h4 id="active-active"><a class="header" href="#active-active">active-active</a></h4>
+<pre class="mermaid">%%{init:{'theme':'neutral'}}%%
+
+flowchart LR
+  Client --&gt; LoadBalancer
+  subgraph cluster
+    Node1
+    Node2
+  end
+  LoadBalancer --&gt; Node1
+  LoadBalancer --&gt; Node2
+</pre>
+<h4 id="active-passive"><a class="header" href="#active-passive">active-passive</a></h4>
+<pre class="mermaid">%%{init:{'theme':'neutral'}}%%
+
+flowchart LR
+  Client --&gt; LoadBalancer
+  subgraph cluster LR
+    Node1_Primary
+    Node2_FailOver
+  end
+  LoadBalancer --&gt; Node1_Primary
+  Node1_Primary -.-&gt; Node2_FailOver
+</pre>
+<h3 id="クラスタリングを用いたコンピューティングのメリットとは"><a class="header" href="#クラスタリングを用いたコンピューティングのメリットとは">クラスタリングを用いたコンピューティングのメリットとは？</a></h3>
+<ul>
+<li>高可用性</li>
+<li>スケーラビリティ</li>
+<li>パフォーマンス</li>
+<li>コスト効率</li>
+</ul>
+<h3 id="クラスタリングを用いる場合のデメリットは"><a class="header" href="#クラスタリングを用いる場合のデメリットは">クラスタリングを用いる場合のデメリットは？</a></h3>
+<ul>
+<li>複雑性のメンテナンスの難しさ。</li>
+</ul>
+<h3 id="サービス例-1"><a class="header" href="#サービス例-1">サービス例</a></h3>
+<ul>
+<li>Containers (e.g. Kubernetes, Amazon ECS)</li>
+<li>Databases (e.g. Cassandra, MongoDB)</li>
+<li>Cashe (e.g. Redis)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="system-design-basics-3"><a class="header" href="#system-design-basics-3">System Design basics</a></h1>
+<p>From
+<a href="https://github.com/karanpratapsingh/system-design">karanpratapsignh/system-design</a></p>
+<h2 id="cacheとは何のためにあるの"><a class="header" href="#cacheとは何のためにあるの">Cacheとは何のためにあるの？</a></h2>
+<p>相対的に時間がかかるストレージレイヤーへの直接的な読み取りを減らし、データ取り出し操作のパフォーマンスを向上させるため。</p>
+<p>一時的なデータが保存されており、その正確性は担保されていないため、パフォーマンスとのトレードオフがある。</p>
+<h3 id="cacheにデータはどのように保存読み取りされるのか"><a class="header" href="#cacheにデータはどのように保存読み取りされるのか">Cacheにデータはどのように保存・読み取りされるのか？</a></h3>
+<p>L1, L2, L3 ... のように階層構造で保存場所が区切られている。 一般的に、上位レイヤー（L1 &gt; L2 &gt; L3）ほどデータ容量は大きくなる。</p>
+<p>キャッシュのどこに保存されたか（メモリ上のアドレス）をタグとしてデータと共に保持しておく。</p>
+<p>読み取り時にはタグを元に上位レイヤー（L1）から検索される。 どのレイヤーにもなければ、直接ストレージに読みに行く。その後、キャッシュに書き込まれる。</p>
+<h3 id="cache-hitとは"><a class="header" href="#cache-hitとは">Cache Hitとは？</a></h3>
+<p>キャッシュがメモリー内に存在し、読み取り要求に対して値を返すことができる場合のこと。</p>
+<ul>
+<li>Hot Cacheとは、可能な限り最も早い速度で値を読み取れるキャッシュのこと。L1に保存されているキャッシュ。</li>
+<li>Warm, Cool Cacheは読み取り速度がより遅いキャッシュ。L2,3に保存される。</li>
+</ul>
+<h3 id="cache-missとは"><a class="header" href="#cache-missとは">Cache missとは？</a></h3>
+<p>キャッシュが見つからない場合のこと。</p>
+<h3 id="cacheデータとstorageデータをどのように同期させたらいいの"><a class="header" href="#cacheデータとstorageデータをどのように同期させたらいいの">CacheデータとStorageデータをどのように同期させたらいいの？</a></h3>
+<p>Cache Invalidationはコンピュータシステムがキャッシュデータを有効か無効か判断し、取り除いたり上書きするプロセスのこと。</p>
+<p>代表的な3パターンが挙げられる。</p>
+<h4 id="write-through-cache"><a class="header" href="#write-through-cache">Write-through Cache</a></h4>
+<pre class="mermaid">%%{init:{'theme':'neutral'}}%%
+
+flowchart LR
+  Client --&gt; |Read| Cache
+  Cache --&gt; Client
+  Cache --&gt; |Write| Storage
+  Storage --&gt; Cache
+</pre>
+<p>データがキャッシュに書き込まれると同時に、ストレージにも書き込まれる。</p>
+<p><strong>Pros</strong>: 読み取り速度が速い。キャッシュとストレージのデータ一貫性が取れる。</p>
+<p><strong>Cons</strong>: 書き込みのレイテンシが増加する。</p>
+<h4 id="write-around-cache"><a class="header" href="#write-around-cache">Write-around Cache</a></h4>
+<pre class="mermaid">%%{init:{'theme':'neutral'}}%%
+
+flowchart LR
+  Client --&gt; |Read| Cache
+  Cache --&gt; Client
+  Client --&gt; |Write| Storage
+  Storage --&gt; Client
+</pre>
+<p>書き込みはキャッシュを介さず、直接ストレージに対して行う。</p>
+<p><strong>Pros</strong>: レイテンシの改善（特に書き込み？）。</p>
+<p><strong>Cons</strong>: 直近に書き込んだデータの読み取り要求が発生し、結果的にレイテンシ悪化に繋がりやすい。</p>
+<h4 id="write-back-cache"><a class="header" href="#write-back-cache">Write-back Cache</a></h4>
+<pre class="mermaid">%%{init:{'theme':'neutral'}}%%
+
+flowchart LR
+   Client --&gt; |Read| Cache
+  Cache --&gt; Client
+  Cache -.-&gt; |Write| Storage
+</pre>
+<p>書き込みをキャッシュに対して行い、非同期でStorageに反映する。</p>
+<p><strong>Pros</strong>: 書き込みが大量に発生するアプリケーションのパフォーマンス改善を期待できる。</p>
+<p><strong>Cons</strong>: キャッシュサーバーに障害が発生して、データを失う危険性がある。</p>
+<h3 id="cacheがいっぱいになったらどうしたらいいの"><a class="header" href="#cacheがいっぱいになったらどうしたらいいの">Cacheがいっぱいになったらどうしたらいいの？</a></h3>
+<p>代表的なCache Evictionポリシーで定めている。</p>
+<ul>
+<li>First In First Out</li>
+<li>Last In First Out</li>
+<li>Least Recently Used</li>
+<li>Most Recently Used</li>
+<li>Least Frequently Used</li>
+<li>Random Replacement</li>
+</ul>
+<h3 id="分散キャッシュシステムとは"><a class="header" href="#分散キャッシュシステムとは">分散キャッシュシステムとは？</a></h3>
+<p>複数アプリケーションサーバー（クライアント）とストレージの間に立って、共有されるキャッシュを分散キャッシュシステムと呼ぶ。</p>
+<p>アプリケーションクラスターのノードに対してCacheを割り当てる。</p>
+<pre class="mermaid">%%{init:{'theme':'neutral'}}%%
+
+flowchart LR
+  subgraph ApplicationCluster
+    direction TB
+    Cluster1
+    Cluster2
+    Cluster3
+  end
+  Cluster1 --&gt; Cache1
+  Cluster1 --&gt; Cache3
+  Cluster2 --&gt; Cache2
+  Cluster2 --&gt; Cache3
+  Cluster3 --&gt; Cache1
+  Cluster3 --&gt; Cache2
+
+  subgraph CacheCluster
+    direction TB
+    Cache1
+    Cache2
+    Cache3
+  end
+  CacheCluster -.-&gt; Storage
+  Storage -.-&gt; CacheCluster
+</pre>
+<p>より詳細なアーキテクチャを詰めると、ロードバランサーなどが必要になってくる。</p>
+<h3 id="グローバルキャッシュシステムとは"><a class="header" href="#グローバルキャッシュシステムとは">グローバルキャッシュシステムとは？</a></h3>
+<p>クラスター間で共有するキャッシュサーバー。</p>
+<h3 id="キャッシュシステムのユースケースは"><a class="header" href="#キャッシュシステムのユースケースは">キャッシュシステムのユースケースは？</a></h3>
+<ul>
+<li>Database Caching</li>
+<li>Content Delivery Network</li>
+<li>Domain Name System Caching</li>
+<li>API Caching</li>
+</ul>
+<h3 id="キャッシュを使わないほうが良いケースは"><a class="header" href="#キャッシュを使わないほうが良いケースは">キャッシュを使わないほうが良いケースは？</a></h3>
+<ul>
+<li>キャッシュを介したアクセスとデータストアへのアクセスにそこまで速度差がない場合。</li>
+<li>リクエストのランダム性が非常に高い場合。</li>
+<li>データストアのデータが頻繁に変わる場合。</li>
+</ul>
+<h3 id="サービス技術例"><a class="header" href="#サービス技術例">サービス・技術例</a></h3>
+<ul>
+<li>Redis</li>
+<li>Memchached</li>
+<li>Amazon Elasticache</li>
+<li>Aerospike</li>
+</ul>
+<h2 id="cdnとは何のためにあるの"><a class="header" href="#cdnとは何のためにあるの">CDNとは何のためにあるの？</a></h2>
+<p>CDNとは、ネットワークとを介したコンテンツのを素早く行うために、地理的に工夫して配置されたサーバー群のこと。</p>
+<ul>
+<li>ネットワークを介したコンテンツの可用性・冗長性。</li>
+<li>帯域コストの削減やセキュリティ向上。</li>
+</ul>
+<h3 id="cdnの仕組みとは"><a class="header" href="#cdnの仕組みとは">CDNの仕組みとは？</a></h3>
+<pre class="mermaid">%%{init:{'theme':'neutral'}}%%
+
+flowchart LR
+  OriginServer -.-&gt; EdgeServer1
+  OriginServer -.-&gt; EdgeServer2
+  OriginServer -.-&gt; EdgeServer3
+  OriginServer -.-&gt; EdgeServer4
+
+  EdgeServer1 -.-&gt; Clients1
+  Clients1 -.-&gt; EdgeServer1
+  
+  EdgeServer2 -.-&gt; Clients2
+  Clients2 -.-&gt; EdgeServer2
+  
+  EdgeServer3 -.-&gt; Clients3
+  Clients3 -.-&gt; EdgeServer3
+  
+  EdgeServer4 -.-&gt; Clients4
+  Clients4 -.-&gt; EdgeServer4
+</pre>
+<p>オリジンサーバー（コンテンツのオリジナルバージョンデータを持つ）とエッジサーバー（キャッシュサーバー）群から構成される。</p>
+<p>クライアントは地理的に近いエッジサーバーに対してアクセスを投げることで、高速なレスポンスを期待できる。</p>
+<h3 id="エッジサーバーのコンテンツをどうやって更新するか"><a class="header" href="#エッジサーバーのコンテンツをどうやって更新するか">エッジサーバーのコンテンツをどうやって更新するか？</a></h3>
+<h4 id="push-cdns"><a class="header" href="#push-cdns">Push CDNs</a></h4>
+<p>オリジンサーバーのコンテンツが変更されたと同時に、エッジサーバー上のデータも変更する。</p>
+<p>配信するコンテンツのより厳密な制御が可能。</p>
+<h4 id="pull-cdns"><a class="header" href="#pull-cdns">Pull CDNs</a></h4>
+<p>エッジサーバーが自動でオリジンサーバーのコンテンツを読みに行く。</p>
+<p>読み取りに行くタイミングはCDN上のキャッシュデータがExpiredした場合。</p>
+<p>CDN上のキャッシュデータの更新はクライアントからオリジンサーバーへのリクエストで制御可能なため、メンテナンスが楽である。</p>
+<p>配信されるコンテンツの厳密な制御はできない。</p>
+<h4 id="サービス例-2"><a class="header" href="#サービス例-2">サービス例</a></h4>
+<ul>
+<li>Amazon CloudFront</li>
+<li>Google Cloud CDN</li>
+<li>Cloudflare CDN</li>
+<li>Fastly</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="データベースって何"><a class="header" href="#データベースって何">データベースって何？</a></h1>
+<p>データとそれを管理するためのシステム（DBMS：Database Management System）のこと。</p>
+<h2 id="dbmsって何やってるの"><a class="header" href="#dbmsって何やってるの">DBMSって何やってるの？</a></h2>
+<p>大きく分けて、エンドユーザーに対するインターフェースの提供とデータベースを管理するための機能を提供する。</p>
+<ul>
+<li>インターフェース：データの取得・更新・削除など。</li>
+<li>管理機能：監視・パフォーマンスモニタリング・バックアップ・リカバリーなど。</li>
+</ul>
+<h2 id="dbの種類はどんなのがある"><a class="header" href="#dbの種類はどんなのがある">DBの種類はどんなのがある？</a></h2>
+<ul>
+<li>SQL</li>
+<li>NoSQL
+<ul>
+<li>Document</li>
+<li>Key-Value</li>
+<li>Grapgh</li>
+<li>Timeseries</li>
+<li>Wide column</li>
+<li>Multi-model</li>
+</ul>
+</li>
+</ul>
+<h2 id="スケールしていく上でデータベースを管理運用してくのに注意することは"><a class="header" href="#スケールしていく上でデータベースを管理運用してくのに注意することは">スケールしていく上でデータベースを管理・運用してくのに注意することは？</a></h2>
+<ul>
+<li>増大していくデータサイズ・処理量</li>
+<li>データセキュリティを担保しつつ、ユーザーが扱いやすい形で提供する</li>
+<li>データベースとインフラのメンテナンス・管理コスト</li>
+<li>データの権限管理・レイテンシの管理（オンプレっていう選択肢もあるよ）</li>
+</ul>
+<h2 id="sqlとは"><a class="header" href="#sqlとは">SQLとは？</a></h2>
+<h3 id="スキーマ定義と関連付け"><a class="header" href="#スキーマ定義と関連付け">スキーマ定義と関連付け</a></h3>
+<p>SQLデータベースではスキーマを定義し、データの集合同士（テーブル）を関連付けて保存する。</p>
+<p>テーブルではそれぞれの行に対して、Primary Keyと呼ばれる固有のキーが付与されている。
+他テーブルの行との関連付を示すために、Foreign Key（他テーブルのPrimaryKey）を所有する。</p>
+<h3 id="トランザクションはacid特性に従う"><a class="header" href="#トランザクションはacid特性に従う">トランザクションはACID特性に従う</a></h3>
+<p><strong>Atomicity</strong></p>
+<p>トランザクション処理が完全に実行されるか、完全に実行されない性質。</p>
+<p>e.g. AからBに10万円の送金を行う場合のトランザクションを考える。</p>
+<ol>
+<li>送金可能かどうかの確認。</li>
+<li>Aさんの口座残高から10万円を減額。</li>
+<li>Bさんの口座残高に10万円を増額。</li>
+</ol>
+<p>この一連処理が途中で失敗した場合、DBシステムがどうするべきか？</p>
+<p><strong>Consistency</strong></p>
+<p>トランザクションが必ず一定のルールにしたがってデータベースに変更を行う性質。
+データの不整合が発生しないようにするための性質。</p>
+<p>e.g. CREATE TABLE時にカラムのデータ型や桁数、NOT NULL条件を指定することなど。</p>
+<p><strong>Isolation</strong></p>
+<p>複数の処理が同時に実行されても、それぞれがお互いに干渉しない声質のこと。
+例えば、複数のプログラムが同時に同じDBやテーブルを更新する場合、一方のトランザクションが
+処理を中断したりエラーにすることでお互いに邪魔しないようにする性質。</p>
+<p><strong>Durabirity</strong></p>
+<p>一旦確定したデータはその後障害が発生しても永遠に変わらず保持される性質。</p>
+<p>e.g. データベースの冗長化やログの保管、ログを用いた障害復旧設計など。</p>
+<h2 id="materialized-viewsとは"><a class="header" href="#materialized-viewsとは">Materialized viewsとは？</a></h2>
+<p>あるSQLクエリの結果をDB内に保存しておく。
+Materialzied Viewへのアクセスが発生した場合、クエリの実行は行われれず保存結果をクライアントに返すだけなので高速な応答が可能。</p>
+<h3 id="具体的なユースケース"><a class="header" href="#具体的なユースケース">具体的なユースケース</a></h3>
+<ul>
+<li>データの事前集計</li>
+<li>データの事前フィルタリング</li>
+<li>データの事前結合</li>
+</ul>
+<p>Amazon RedshiftやBigQueryにもマテビューの機能がある。</p>
+<p>https://cloud.google.com/bigquery/docs/materialized-views-intro?hl=ja</p>
+<h2 id="n1クエリ問題"><a class="header" href="#n1クエリ問題">N+1クエリ問題</a></h2>
+<p>どんな問題かは、他にたくさん説明があるため譲る。</p>
+<p>ORMを利用するWebフレームワークでは発生しやすい。
+内部の仕様によってクエリ発行が気付かぬうちに行われる場合などがあるため。</p>
+<p>Q. N+1問題の対策・改善を行うために、フレームワークの仕様を理解する必要がある。
+Q. 取得したい結果とテーブル構造から、効率的な取得方法を認識しておく必要がある（SQLの知識）。
+Q. N+1問題発見ツールは効果的か？</p>
+<h2 id="advantage"><a class="header" href="#advantage">Advantage</a></h2>
+<ul>
+<li>シンプルで正確</li>
+<li>アクセスしやすい</li>
+<li>データの一貫性を保ちやすい。</li>
+<li>データの柔軟性が高い。</li>
+</ul>
+<h2 id="disatvantages"><a class="header" href="#disatvantages">Disatvantages</a></h2>
+<ul>
+<li>管理・運用コストが高い</li>
+<li>スキーマ変更が難しい</li>
+<li>パフォーマンスが悪化しやすい。</li>
+<li>水平スケーリングが難しい。</li>
+</ul>
+<h2 id="nosqlとは"><a class="header" href="#nosqlとは">NoSQLとは？</a></h2>
+<p>スキーマを定義しない、したがって関連付けも行わない。</p>
+<p>トランザクションはBASE特性に従う。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="system-design-of-scaleble-url-shortener-service"><a class="header" href="#system-design-of-scaleble-url-shortener-service">System Design of Scaleble URL shortener service</a></h1>
+<p>source: https://medium.com/@sandeep4.verma/system-design-scalable-url-shortener-service-like-tinyurl-106f30f23a82</p>
+<h2 id="features"><a class="header" href="#features">Features</a></h2>
+<ul>
+<li>URLの保持期間は？</li>
+<li>URLの長さはどれくらい？</li>
+<li>ユーザーがURLを作成できるようにするか、サービス側で自動生成するか。</li>
+<li>生成したURLに対してどれくらいのトラフィックが生じるか？</li>
+<li>どのようなメトリクスを計測するべきか。</li>
+</ul>
+<h2 id="system-design-goals"><a class="header" href="#system-design-goals">System Design Goals</a></h2>
+<h3 id="機能要件"><a class="header" href="#機能要件">機能要件</a></h3>
+<ul>
+<li>長いURLを短いURLに変換することができる。</li>
+<li>短縮URLをクリックするとオリジナルのURLにリダイレクトされる。</li>
+<li>短縮URLの長さは可能な限り短くする。</li>
+<li>ユーザーは最大16文字を使ってカスタムの短縮URLを作成可能。</li>
+<li>最もクリックされたリンクなどのメトリクスを計測している。</li>
+<li>作成された短縮URLは一定期間、システムが保持する必要がある。</li>
+</ul>
+<h3 id="非機能要件"><a class="header" href="#非機能要件">非機能要件</a></h3>
+<ul>
+<li>サービスは常に稼働する必要がある。</li>
+<li>URLリダイレクトは常に高速であること（負荷のピークであっても）</li>
+<li>サードパーティとの統合のために、APIエンドポイントを公開できる。</li>
+</ul>
+<h2 id="traffic-and-system-capacity"><a class="header" href="#traffic-and-system-capacity">Traffic and System Capacity</a></h2>
+<h3 id="traffic"><a class="header" href="#traffic">Traffic</a></h3>
+<ul>
+<li>200:1 = read/write ratio</li>
+<li>1月のユニークな短縮URLの数 = 100M</li>
+<li>1秒当たりの生成される短縮URLの数 ~ 40 URLs/second (30 days * 24 hours * 3600 seconds)</li>
+<li>1秒当たりのリダイレクト数 = 40 URLs/s * 200 (read/write ratio) = 8000 URLs/s</li>
+</ul>
+<h3 id="storage"><a class="header" href="#storage">Storage</a></h3>
+<ul>
+<li>サービスのライフタイム = 100y (100M urls per month)</li>
+<li>ライフタイム分のURL数 = 100 * 12 * 100M = 120B</li>
+<li>URL、作成日付などのデータオブジェクトを500byteとすると必要なストレージは 120B * 500 bytes = 60TB</li>
+</ul>
+<h3 id="memory"><a class="header" href="#memory">Memory</a></h3>
+<ul>
+<li>Pareto Principle (20:80 lows)に基づいて、20%のデータをキャッシュすることで80%のリクエストをカバーできると仮定する。</li>
+<li>8000 read request/seconds * 86400 seconds = 700M read request per day)</li>
+<li>キャッシュするデータ量は 700M * 0.2 * 500 bytes ~ 70GB</li>
+</ul>
+<pre><code class="language-text">Shortened URLs generated: 40/s
+Shortened URLs generated in 100 years: 120 billion
+Total URL requests/redirections: 8000/s
+Storage for 100 years: 60TB
+Cache Memory: 70 GB
+</code></pre>
+<h2 id="high-level-design"><a class="header" href="#high-level-design">High Level Design</a></h2>
+<pre class="mermaid">flowchart LR
+    LR((client)) --&gt; WebServer
+    WebServer --&gt; LR((client))
+    Analytics --&gt; WebServer
+    DB[(Database)] --&gt; WebServer
+    WebServer --&gt; DB[(Database)]
+</pre>
+<h3 id="problems-with-above-design"><a class="header" href="#problems-with-above-design">Problems with above design</a></h3>
+<ul>
+<li>サーバーが一つしかないため、単一障害点（SPOF）となる。</li>
+<li>システムがスケールできない。</li>
+<li>60TBは一つのDBでは賄いきれない。また、8000/sのリードリクエストを処理できない。</li>
+</ul>
+<h3 id="to-cater-above-limitations"><a class="header" href="#to-cater-above-limitations">To cater above limitations</a></h3>
+<ul>
+<li>ロードバランサーを追加する。</li>
+<li>データベースをシャードして、巨大なデータを格納できるようにする。</li>
+<li>キャッシュを追加して、DBへの負荷を減らす。</li>
+</ul>
+<pre class="mermaid">flowchart LR
+    subgraph webserver
+        WebServer2
+        WebServer
+    end
+    LR((client)) --&gt; LoadBalancer
+    LoadBalancer --&gt; WebServer
+    LoadBalancer --&gt; WebServer2
+    DB[(Database)] --&gt; WebServer
+    WebServer --&gt; DB[(Database)]
+    DB[(Database)] --&gt; WebServer2
+    WebServer2 --&gt; DB[(Database)]
+    Cache --&gt; WebServer
+    Cache --&gt; WebServer2
+</pre>
+<h2 id="algorithms-rest-endpoints"><a class="header" href="#algorithms-rest-endpoints">Algorithms REST Endpoints</a></h2>
+<pre><code class="language-text">create(long_url, api_key, custom_url)
+
+POST
+Request Body: `{url=long_url, custom_url (optional)}`
+Return OK (200) with the generated `short_url` in data
+</code></pre>
+<pre><code class="language-text">get(short_url)
+Return a http redirect response (302)
+</code></pre>
+<p><strong>Tips</strong></p>
+<p>A 301 redirect means the page has permanently moved to a new location.
+A 302 redirect means that the moves is only temporaly. &lt;- こうすると、クライアントからのリダイレクトリクエストがバックエンドまで飛んでくるためメトリクスの計測が可能。</p>
+<h2 id="database-schema"><a class="header" href="#database-schema">Database Schema</a></h2>
+<p><strong>User table</strong></p>
+<pre><code class="language-text">user_id: unique
+name:
+email:
+creation_date
+</code></pre>
+<p><strong>URL table</strong></p>
+<pre><code class="language-text">short_url:
+original_url:
+user_id:
+</code></pre>
+<h2 id="shortening-algorithm"><a class="header" href="#shortening-algorithm">Shortening Algorithm</a></h2>
+<p>Candidates are as follows:</p>
+<ul>
+<li>URL Encoding</li>
+<li>URL Encoding with base62</li>
+<li>URL Encoding through md5</li>
+<li>Key generation service (KGS)</li>
+</ul>
+<p>base64でエンコードする場合、<code>[0-9][a-z][A-Z]</code>、すなわち一文字当たり64通りで変換される。
+7文字使えば、<code>64^7 ~ 3500B</code>になるため要件の120Bを満たす。
+従って、７文字のbase64エンコーディングすれば良いことがわかる。</p>
+<p>次に、このアルゴリズムを使ってどのようにユニークなエンコード結果を得るか考える。</p>
+<h3 id="method1-random"><a class="header" href="#method1-random">Method1: Random</a></h3>
+<p>最も単純な方法は、ランダムに生成してそれがDBになければ保存、既存の場合は再度生成を繰り返す方法。</p>
+<h3 id="method2-base-conversion"><a class="header" href="#method2-base-conversion">Method2: Base Conversion</a></h3>
+<p>もっと良い方法として、進数を変換させることでユニークはエンコード結果を得る方法がある。
+具体的には、まずある十分に大きい10進数（64進数に変換した際に７桁あるもの）を用意する。
+新しいURLが作成される度に、その10進数に1を加算した値を64進数に変換した結果をShort URLとする。
+このようにしていけば、必ずユニークなショートURLが生成可能となる。</p>
+<h3 id="method3-md5-hash"><a class="header" href="#method3-md5-hash">Method3: MD5 hash</a></h3>
+<p>URL文字列をMDハッシュに変換し、変換結果の先頭７文字を用いる。
+その7文字がすでに使用されている場合には次の7文字を用いる。
+この操作を繰り返す。</p>
+<h3 id="method4-key-generation-service-kgs"><a class="header" href="#method4-key-generation-service-kgs">Method4: Key Generation Service (KGS)</a></h3>
+<p>シンプルに7文字の文字列（未使用）を生成し、保存しておく。
+このようにすることで構造はずっとシンプルにすることが可能。</p>
+<p>使用ずみ文字列テーブルと未使用のテーブルの2つを用意しておく。
+また、常にメモリー状に未使用の文字列を持っておくことで高速なレスポンスを期待する。
+さらに、使用と同時に最速で使用済みテーブルに格納されるために、同時接続があった場合にも対応できると考えられる。</p>
+<p>単一障害点になりうるため常にレプリカを稼働させておく必要がある。</p>
+<h2 id="databases"><a class="header" href="#databases">Databases</a></h2>
+<ul>
+<li>Relational databases</li>
+<li>NoSQL-style databases like BigTable and Cassandra</li>
+</ul>
+<p>今回は、短縮URLが存在しない場合DBに格納することと、短縮URLがユニークである必要があるのでNoSQLライクなDBは不敵であると言える。</p>
+<h3 id="scaling"><a class="header" href="#scaling">Scaling</a></h3>
+<p>シャード技術を用いてスケーリングさせる。短縮URLのアルゴリズムごとにシャーディング戦略を立てることができる。</p>
+<h4 id="for-method1-random"><a class="header" href="#for-method1-random">For method1: Random</a></h4>
+<p>短縮URLの7文字ハッシュをシャーディングキーに代用可能（ユニークなキーを元によしなにシャーディングをしてくれるMongoDBなどがあるっぽい）。
+また、短縮URLをインデックスすることでより高速な読み取りを期待できる。</p>
+<h4 id="for-method2-base-conversion"><a class="header" href="#for-method2-base-conversion">For method2: Base Conversion</a></h4>
+<p>新しい短縮URLごとに増えていく数字を使って、シャーディングができる。範囲指定する感じで。</p>
+<h2 id="cache"><a class="header" href="#cache">Cache</a></h2>
+<p>頻繁にアクセスされるURLはキャッシュしておく。</p>
+<p>キャッシュに必要なデータ量は20％のリクエスト分のデータ。</p>
+<p>キャッシュのポリシーはLeast Reacently Used（最も長い間参照されていないものから削除していく方法）が適している。</p>
+<h2 id="load-balancer"><a class="header" href="#load-balancer">Load Balancer</a></h2>
+<ul>
+<li>クライアントとWebserverの間</li>
+<li>WebServerとDBサーバーの間</li>
+<li>WebServerとキャッシュサーバーの間</li>
+</ul>
+<p>ロードバランスの方法もいくつかあるみたい。</p>
+<h2 id="customer-provided-tiny-urls"><a class="header" href="#customer-provided-tiny-urls">Customer provided Tiny URLs</a></h2>
+<p>8文字以上も英数字と一部の特殊文字で生成してもらうようにすればOK。</p>
+<h2 id="analytics"><a class="header" href="#analytics">Analytics</a></h2>
+<p>302レスポンスを返すので、バックエンドサーバーにリクエストが飛ぶ。これをKafkaなどに送信すればOKなんだね。</p>
+<h2 id="自分の考え"><a class="header" href="#自分の考え">自分の考え</a></h2>
+<h3 id="システムが設計すべき事項解決すべき問題設計スコープ"><a class="header" href="#システムが設計すべき事項解決すべき問題設計スコープ">システムが設計すべき事項・解決すべき問題・設計スコープ</a></h3>
+<p>要件</p>
+<ul>
+<li>与えられたURLに対し、自分のドメインのURLを生成して割り当てる。</li>
+<li>すでに割り当て済みのURLがあった場合には、生成済みのURLを返す。</li>
+<li>生成したURLにアクセスがあった場合に、登録された元のURLに対してリダイレクトする。</li>
+<li>一定期間アクセスがなかったURLは自動で削除する。</li>
+</ul>
+<h3 id="hld"><a class="header" href="#hld">HLD</a></h3>
+<pre class="mermaid">flowchart TD
+    db --&gt; apiServer
+    batchServer --&gt; db
+    cacheServer --&gt; apiServer
+</pre>
+<h3 id="細部"><a class="header" href="#細部">細部</a></h3>
+<h4 id="scaling-1"><a class="header" href="#scaling-1">Scaling</a></h4>
+<ul>
+<li>ユーザー数・CPU使用割合に応じたAPIサーバーのスケーリング。</li>
+<li>データベースの量はそこまでいらない。ユーザー当たり、頻繁に短いURLを作成するケースは少ないと想定できるため。</li>
+</ul>
+<h4 id="cacheing"><a class="header" href="#cacheing">Cacheing</a></h4>
+<ul>
+<li>直近アクセスがあったURLはキャッシュしておく。</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-output-of-my-watching-books"><a class="header" href="#the-output-of-my-watching-books">The output of My Watching Books</a></h1>
+<p>忘れたくない内容の動画のまとめ、アウトプット用。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="how-greate-leaders-inspire-action"><a class="header" href="#how-greate-leaders-inspire-action">How greate leaders inspire action?</a></h1>
+<p><a href="https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=ja&amp;subtitle=ja">URL</a></p>
+<h2 id="内容"><a class="header" href="#内容">内容</a></h2>
+<p>人は共感しないと行動しない。とくになぜそれをやるのかの部分に共感させる必要がある。
+したがって人を行動させるためには WHY -&gt; How -&gt; What の順で話すことが必要だ。偉大なリーダーや革命を起こす人はこれを実践している。
+例えば Apple の場合</p>
+<ul>
+<li><strong>WHY</strong>: 我々は世界を変えるという信念をもってすべてのことを行っています。他の人とは異なった考え方に価値があると信じています。</li>
+<li><strong>How</strong>:私たちが世界を変える手段は、美しくデザインされ,簡単に使えて親しみやすい製品を作ることです。</li>
+<li><strong>What</strong>:こうして素晴らしいコンピュータができあがりました。</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-output-of-my-developing-tips"><a class="header" href="#the-output-of-my-developing-tips">The output of My developing tips</a></h1>
+<p>忘れたくない開発上の Tips まとめ。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="git-communications"><a class="header" href="#git-communications">Git Communications</a></h1>
+<h2 id="add-prefix-to-commit-summary"><a class="header" href="#add-prefix-to-commit-summary">Add prefix to commit summary</a></h2>
+<p>コミットメッセージのタイトルに prefix をつけると一目でなんの変更なのかが掴めるため、レビュワーにとって嬉しい。以下のものが有名みたい。</p>
+<table><thead><tr><th>プレフィックス</th><th>説明</th></tr></thead><tbody>
+<tr><td>feat:</td><td>新機能</td></tr>
+<tr><td>fix:</td><td>バグの修正</td></tr>
+<tr><td>docs:</td><td>ドキュメントのみの変更</td></tr>
+<tr><td>style:</td><td>コードの動作に影響しない、見た目だけの変更（スペース、フォーマット、欠落の修正、セミコロンなど）</td></tr>
+<tr><td>refactor:</td><td>バグの修正や機能の追加ではないコードの変更</td></tr>
+<tr><td>perf:</td><td>パフォーマンスを向上させるコードの変更</td></tr>
+<tr><td>test:</td><td>不足しているテストの追加や既存のテストの修正</td></tr>
+<tr><td>chore:</td><td>ビルドプロセスやドキュメント生成などの補助ツールやライブラリの変更</td></tr>
+</tbody></table>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="mercari-techs"><a class="header" href="#mercari-techs">Mercari Techs</a></h1>
+<p>Mercariエンジニアリングチームの公開されている情報で有用そうな情報をまとめる。</p>
+<h2 id="mercari-ladder"><a class="header" href="#mercari-ladder">Mercari Ladder</a></h2>
+<p><a href="https://engineering.mercari.com/ladder/">URL</a></p>
+<h3 id="概要-1"><a class="header" href="#概要-1">概要</a></h3>
+<p>Mercairiのエンジニアがエンジニアとしてあるべき姿を共有し、互いに強みを生かす組織を作るために定義されたもの。
+6段階にレベル分けされており、各レベルでどのようなことが求められているのか言語化されている。
+エンジニアになりたての人、駆け出しエンジニアは特にどのような力が求められるのか情報を得られる。</p>
+<h2 id="チーム論"><a class="header" href="#チーム論">チーム論</a></h2>
+<h3 id="メルカリshopsiのチームトポロジー"><a class="header" href="#メルカリshopsiのチームトポロジー">メルカリShopsiのチームトポロジー</a></h3>
+<p><a href="https://engineering.mercari.com/blog/entry/20210812-team-topologies-in-souzoh/">URL</a></p>
+<p><a href="https://www.amazon.co.jp/dp/B07NSF94PC">ビジネス・エンジニアチームをどのように組成するべきか語られた本</a>を参考にチームを構成している。</p>
+<ol>
+<li>Product Team A/B (Stream-alined team): TeamAはBuyer顧客への機能開発、TeamBはSeller顧客への機能委開発を担当</li>
+<li>Enabling Team (Enhancer of Stream-alined team): TeamA/Bの技術強化。Platform、SRE、Frontend Specialist、MLなどのエンジニアが所属。</li>
+</ol>
+<h2 id="メルカリshopsの技術スタック"><a class="header" href="#メルカリshopsの技術スタック">メルカリShopsの技術スタック</a></h2>
+<p><a href="https://engineering.mercari.com/blog/entry/20210810-mercari-shops-tech-stack/">URL</a></p>
+<h3 id="todo-まとめる"><a class="header" href="#todo-まとめる">TODO まとめる</a></h3>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-output-of-training"><a class="header" href="#the-output-of-training">The output of Training</a></h1>
+<p>トレーニングメニューなど。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="training"><a class="header" href="#training">Training</a></h1>
+<h2 id="サーキットトレーニング"><a class="header" href="#サーキットトレーニング">サーキットトレーニング</a></h2>
+<h3 id="web-タイマー"><a class="header" href="#web-タイマー">WEB タイマー</a></h3>
+<p><a href="https://www.hinokoto.com/interval-timer/">WEB タイマー</a></p>
+<h3 id="menu"><a class="header" href="#menu">Menu</a></h3>
+<ol>
+<li>push up</li>
+<li>squat</li>
+<li>prank</li>
+<li>front range</li>
+<li>krunch</li>
+<li>shadow boxing</li>
+<li>jump squat</li>
+<li>push up again</li>
+<li>reverse range</li>
+<li>krunch</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="mermaid.min.js"></script>
+        <script type="text/javascript" src="mermaid-init.js"></script>
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

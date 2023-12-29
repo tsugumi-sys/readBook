@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Introduction - my read books</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../books.html"><strong aria-hidden="true">1.</strong> Books</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../books/google-software-engineering.html"><strong aria-hidden="true">1.1.</strong> Google Software Engineering</a></li><li class="chapter-item expanded "><a href="../books/clean-architecture.html"><strong aria-hidden="true">1.2.</strong> Clean Architecture</a></li></ol></li><li class="chapter-item expanded "><a href="../system-design-interview.html"><strong aria-hidden="true">2.</strong> System Design Interview</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../system-design-interview/introduction.html" class="active"><strong aria-hidden="true">2.1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../system-design-interview/ip-osimodel.html"><strong aria-hidden="true">2.2.</strong> IP DNS and TCP/UDP</a></li><li class="chapter-item expanded "><a href="../system-design-interview/loadblancer-clustering.html"><strong aria-hidden="true">2.3.</strong> Load Balancing and Clustering</a></li><li class="chapter-item expanded "><a href="../system-design-interview/cache-cdn.html"><strong aria-hidden="true">2.4.</strong> Cache and CDN</a></li><li class="chapter-item expanded "><a href="../system-design-interview/databases.html"><strong aria-hidden="true">2.5.</strong> Databases</a></li><li class="chapter-item expanded "><a href="../system-design-interview/url-shortener-service.html"><strong aria-hidden="true">2.6.</strong> System Design of URL Shourtener Service</a></li></ol></li><li class="chapter-item expanded "><a href="../videos.html"><strong aria-hidden="true">3.</strong> Videos</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../videos/how-greate-leaders-inspire-action.html"><strong aria-hidden="true">3.1.</strong> How greate leaders inspire action?</a></li></ol></li><li class="chapter-item expanded "><a href="../dev-tips.html"><strong aria-hidden="true">4.</strong> Dev-tips</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../dev-tips/git-communications.html"><strong aria-hidden="true">4.1.</strong> Git Commuincations</a></li><li class="chapter-item expanded "><a href="../dev-tips/mercari-ladders.html"><strong aria-hidden="true">4.2.</strong> Mercari Engeneer Ladders</a></li></ol></li><li class="chapter-item expanded "><a href="../health.html"><strong aria-hidden="true">5.</strong> Health</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../health/training.html"><strong aria-hidden="true">5.1.</strong> training</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my read books</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="system-design-interview-basics"><a class="header" href="#system-design-interview-basics">System Design Interview Basics</a></h1>
+<h2 id="はじめに"><a class="header" href="#はじめに">はじめに</a></h2>
+<p>Googleがシステムデザインインタビューに関する動画で基礎中の基礎を書いてくれていたので、まとめる。</p>
+<p>source: https://www.youtube.com/watch?v=Gg318hR5JY0&amp;t=18s</p>
+<h3 id="cmmunication"><a class="header" href="#cmmunication">Cmmunication</a></h3>
+<p>大きく分けて、以下の２つを見ている。</p>
+<ul>
+<li>問題解決能力</li>
+<li>他者とのコミュニケーション能力</li>
+</ul>
+<h4 id="問題解決能力"><a class="header" href="#問題解決能力">問題解決能力</a></h4>
+<p>技術力関係なしに、その人の問題解決能力がどれくらいあるかをまず測りたい。
+したがって、自分の考えたことを相手にも積極的に伝えて透明化することを意識する。</p>
+<p>加えて、技術的な知識・経験等を組み合わせてどれくらい質の高いアウトプットが出せるかをみたい。</p>
+<h4 id="コミュニーケーション能力"><a class="header" href="#コミュニーケーション能力">コミュニーケーション能力</a></h4>
+<p>議論をリードする力、問題を構造化して一つづつ確実に処理していく整理力、詰まったところなどを整理して他者と相談しがなら進められる力など。</p>
+<h3 id="designing-to-scale"><a class="header" href="#designing-to-scale">Designing to Scale</a></h3>
+<p>今日において、どれくらいのアクセス・データ量を捌けるかどうかは必須の要件となっている。</p>
+<p>System Propertiesが代表的にな要件となっている。</p>
+<h4 id="system-properties"><a class="header" href="#system-properties">System Properties</a></h4>
+<ul>
+<li>Latency</li>
+<li>Throughput</li>
+<li>Storage</li>
+</ul>
+<p>https://www.youtube.com/watch?v=-W9F__D3oY4&amp;t=2s</p>
+<h3 id="concrete-and-quantitative-solutions"><a class="header" href="#concrete-and-quantitative-solutions">Concrete and Quantitative Solutions</a></h3>
+<p>常に物理法則や現実的なパラメータ（距離など）も合わせて考える必要がある。</p>
+<h4 id="costs-of-operations"><a class="header" href="#costs-of-operations">Costs of Operations</a></h4>
+<ul>
+<li>Read from disk</li>
+<li>Read from memory</li>
+<li>Local Area Network (LAN) round-trip</li>
+<li>Cross-Continental Network</li>
+</ul>
+<p>実際にはホワイトボードにて、概要図（アーキテクチャー図）を使うことが多い。
+これらの課題を解決するための代表的なパターンがいくつかあるため、押さえておこう。</p>
+<h4 id="solution-patterns"><a class="header" href="#solution-patterns">Solution Patterns</a></h4>
+<ul>
+<li>Sharding data</li>
+<li>Replication types</li>
+<li>Write-Ahead Logging</li>
+<li>Separating data and metadata storage</li>
+<li>Load distribution</li>
+</ul>
+<h3 id="trade-offs-and-compromises"><a class="header" href="#trade-offs-and-compromises">Trade-offs and Compromises</a></h3>
+<p>実際にシステムデザインを行うときには、いくつかのトレードオフに基づいて妥協しなければならない。
+インタビュー時にこれらのことも議論できるとなお良い。</p>
+<h2 id="実際の流れ一例"><a class="header" href="#実際の流れ一例">実際の流れ一例</a></h2>
+<ol>
+<li>そのシステムが達成すべき事項・解決すべき問題の理解・設計スコープの設定</li>
+<li>high-level architecture の提案</li>
+<li>より細部の設計検討</li>
+<li>ラップアップ</li>
+</ol>
+<p>「そのシステムを設計する上で重要な課題は何か？」という問題の理解に時間をかけずに、稚速にアーキテクチャや採用すべき技術を提案することは百害あって一利なし。</p>
+<p>問題を理解するために、質問を適切に投げかけて仮定・想定を少しづつ積み上げていく。これによって言語化されていなかった要件や仕様を明確にしていく。</p>
+<h3 id="問題理解のための質問具体例"><a class="header" href="#問題理解のための質問具体例">問題理解のための質問具体例</a></h3>
+<ul>
+<li>具体的にどのような機能が必要なのか。</li>
+<li>想定ユーザー数は。</li>
+<li>システムに期待するスケール速度は？</li>
+<li>その企業では今、どんな技術スタックを採用しているか？既存のサービスを流用することで新規の作成範囲を縮小できないか。</li>
+</ul>
+<h3 id="high-level-architectureについて"><a class="header" href="#high-level-architectureについて">high level architectureについて</a></h3>
+<p>システム全体のコンセプトを伝えることを心がある。
+また、この段階で性能や収容性・スケーラビリティについても荒く計算し最低限の実現性を担保しておく。</p>
+<h3 id="ラップアップについて"><a class="header" href="#ラップアップについて">ラップアップについて</a></h3>
+<ul>
+<li>コンポーネントの故障時の可用性について、どのように考えているのか？</li>
+<li>運用する上で監視するべきメトリクスは何か？</li>
+<li>ユーザー数増加に伴うシステムのスケーリング戦略はあるか？</li>
+</ul>
+<h2 id="有用なオンライン学習ソース"><a class="header" href="#有用なオンライン学習ソース">有用なオンライン学習ソース</a></h2>
+<ul>
+<li>https://github.com/checkcheckzz/system-design-interview</li>
+<li>https://github.com/donnemartin/system-design-primer/blob/master/README-ja.md</li>
+<li>https://www.youtube.com/watch?v=-W9F__D3oY4&amp;t=2s</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../system-design-interview.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="../system-design-interview/ip-osimodel.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../system-design-interview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="../system-design-interview/ip-osimodel.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript" src="../mermaid.min.js"></script>
+        <script type="text/javascript" src="../mermaid-init.js"></script>
+    </body>
+</html>
